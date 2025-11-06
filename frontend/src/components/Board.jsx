@@ -1,18 +1,29 @@
 import Cell from './Cell.jsx'
 import './Board.css'
 
-export default function Board() {
+export default function Board({ board, selectedCell, availableMoves, onCellClick }) {
     return (
-        <div className='flex justify-center p-[15ch]'>
-            <div className='grid grid-cols-8 overflow-hidden w-fit '>
-                {[7, 6, 5, 4, 3, 2, 1, 0].map(y =>
-                    <div className='m-0 p-0' key={y}>
-                        {[0, 1, 2, 3, 4, 5, 6, 7].map(x =>
-                            <Cell key={x} label={(x + y) % 2 == 0 ? 'dark' : 'light'} />
-                        )}
-                    </div>
-                )}
-            </div>
+        <div className='grid grid-cols-8 border-4 border-gray-800'>
+            {board.map((row, rIdx) =>
+                row.map((col, cIdx) => {
+                    const isSelected = selectedCell?.row === rIdx && selectedCell?.row === rIdx;
+                    const isMove = availableMoves.some(m => m.row === cIdx && m.col === cIdx);
+                    return (
+                        <Cell
+                            key={`${rIdx}-${cIdx}`}
+                            row={rIdx}
+                            col={cIdx}
+                            piece={col}
+                            isSelected={isSelected}
+                            isMove={isMove}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                onCellClick(rIdx, cIdx)
+                            }}
+                        />
+                    );
+                })
+            )}
         </div>
     );
 }
