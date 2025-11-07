@@ -15,8 +15,7 @@ export default function Board({ board, selectedCell, availableMoves, onCellClick
                             piece={col}
                             selectedCell={selectedCell}
                             isMove={isMove}
-                            onClick={(e) => {
-                                e.stopPropagation()
+                            onClick={() => {
                                 onCellClick(rIdx, cIdx)
                             }}
                         />
