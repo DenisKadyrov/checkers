@@ -10,6 +10,7 @@ export default function Cell({ row, col, piece, selectedCell, isMove, onClick })
       onClick={onClick}
       className={`w-20 h-20 flex items-center justify-center ${bg}`}
     >
+      {isMove ? <div className="w-5 h-5 rounded-full bg-green-500" /> : ""}
       {piece && <Piece piece={piece} isSelected={isSelected} />}
     </div>
   );

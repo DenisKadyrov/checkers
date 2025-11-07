@@ -6,7 +6,7 @@ export default function Board({ board, selectedCell, availableMoves, onCellClick
         <div className='grid grid-cols-8 border-4 border-gray-800'>
             {board.map((row, rIdx) =>
                 row.map((col, cIdx) => {
-                    const isMove = availableMoves.some(m => m.row === cIdx && m.col === cIdx);
+                    const isMove = availableMoves.some(m => m.row === rIdx && m.col === cIdx);
                     return (
                         <Cell
                             key={`${rIdx}-${cIdx}`}
