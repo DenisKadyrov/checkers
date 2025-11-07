@@ -126,12 +126,6 @@ async def validate_move(request: MoveRequest):
         all_moves = engine.get_all_moves(player, request.board)
         
         # Check if the requested move is valid
-        move_dict = {
-            'from': request.from_pos,
-            'to': request.to_pos,
-            'jumps': []
-        }
-        
         valid_move = None
         for move in all_moves:
             if (move['from']['row'] == request.from_pos['row'] and
